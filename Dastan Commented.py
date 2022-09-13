@@ -147,11 +147,16 @@ class Dastan:
             self.__DisplayState()
             SquareIsValid = False
             Choice = 0
-            while Choice < 1 or Choice > 3:
-                Choice = int(input("Choose move option to use from queue (1 to 3) or 9 to take the offer: "))
+            isnumeric = False
+            while not isnumeric:
+                Choice = input("Choose move option to use from queue (1 to 3) or 9 to take the offer: ")
                 if Choice == 9:
                     self.__UseMoveOptionOffer()
                     self.__DisplayState()
+                isnumeric = Choice.isnumeric()
+                if isnumeric and 3 >= int(Choice) >= 1: # Had the player made a valid choice?
+                    break
+            Choice = int(Choice)
             while not SquareIsValid:
                 StartSquareReference = self.__GetSquareReference("containing the piece to move")
                 SquareIsValid = self.__CheckSquareIsValid(StartSquareReference, True)
