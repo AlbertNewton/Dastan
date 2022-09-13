@@ -10,6 +10,9 @@
 
 import random
 
+import time
+
+random.seed(time.time())
 
 class Dastan:
     def __init__(self, R, C, NoOfPieces):
