@@ -172,6 +172,8 @@ class Dastan:
                 self.__UpdateBoard(StartSquareReference, FinishSquareReference)
                 self.__UpdatePlayerScore(PointsForPieceCapture)
                 print("New score: " + str(self._CurrentPlayer.GetScore()) + "\n")
+            else:
+                input("Invalid move. Turn forfeit. Enter any input to continue: ")
             if self._CurrentPlayer.SameAs(self._Players[0]):
                 self._CurrentPlayer = self._Players[1]
             else:
