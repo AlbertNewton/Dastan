@@ -113,8 +113,11 @@ class Dastan:
         return not (Player1HasMirza and Player2HasMirza)
 
     def __GetSquareReference(self, Description):
-        SelectedSquare = int(input("Enter the square " + Description + " (row number followed by column number): "))
-        return SelectedSquare
+        isnumeric = False
+        while not isnumeric:
+            SelectedSquare = input("Enter the square " + Description + " (row number followed by column number): ")
+            isnumeric = SelectedSquare.isnumeric()  # Checks that SelectedSquare can be converted to an int
+        return int(SelectedSquare)
 
     def __UseMoveOptionOffer(self):
         ReplaceChoice = int(input("Choose the move option from your queue to replace (1 to 5): "))
