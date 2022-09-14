@@ -31,6 +31,8 @@ class Dastan:
         self.__CreatePieces(NoOfPieces)
         self._CurrentPlayer = self._Players[0]
         self._Moves = ["jazair", "chowkidar", "cuirassier", "ryott", "faujdar"]
+        self._Players[0].RandomiseQueue()
+        self._Players[1].RandomiseQueue()
 
     def __DisplayBoard(self):
         print("\n" + "   ", end="")
