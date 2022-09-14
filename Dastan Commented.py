@@ -3,8 +3,6 @@
 # written by the AQA Programmer Team
 # developed in the Python 3.9 programming environment
 
-# TODO: Make inputting text in the GetSquareReference sequence in PlayGame
-
 # TODO: Allow user to retry when illegal move inputted
 
 
