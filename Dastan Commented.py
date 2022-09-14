@@ -14,6 +14,7 @@ import time
 
 random.seed(time.time())
 
+
 class Dastan:
     def __init__(self, R, C, NoOfPieces):
         self._Board = []
@@ -29,6 +30,7 @@ class Dastan:
         self.__CreateBoard()
         self.__CreatePieces(NoOfPieces)
         self._CurrentPlayer = self._Players[0]
+        self._Moves = ["jazair", "chowkidar", "cuirassier", "ryott", "faujdar"]
 
     def __DisplayBoard(self):
         print("\n" + "   ", end="")
@@ -157,7 +159,7 @@ class Dastan:
                     self.__UseMoveOptionOffer()
                     self.__DisplayState()
                 isnumeric = Choice.isnumeric()
-                if isnumeric and 3 >= int(Choice) >= 1: # Had the player made a valid choice?
+                if isnumeric and 3 >= int(Choice) >= 1:  # Had the player made a valid choice?
                     break
             Choice = int(Choice)
             while not SquareIsValid:
@@ -321,6 +323,17 @@ class Dastan:
         self._Players[1].AddToMoveOptionQueue(self.__CreateMoveOption("jazair", -1))
         self._Players[1].AddToMoveOptionQueue(self.__CreateMoveOption("faujdar", -1))
         self._Players[1].AddToMoveOptionQueue(self.__CreateMoveOption("cuirassier", -1))
+
+
+"""  # TODO: Make this work
+    def __GetRandomMove(self):
+        return self._Moves[random.randint(0, len(self._Moves)-1)]
+
+    def __CreateMoveOptions(self):
+        for i in range(5):
+            self._Players[0].AddToMoveOptionQueue(self.__CreateMoveOption(self.__GetRandomMove(), 1))
+            self._Players[1].AddToMoveOptionQueue(self.__CreateMoveOption(self.__GetRandomMove(), -1))
+"""  # Does not work
 
 
 class Piece:
