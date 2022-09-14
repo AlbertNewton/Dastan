@@ -3,6 +3,14 @@
 # written by the AQA Programmer Team
 # developed in the Python 3.9 programming environment
 
+#  TODO: Show available squares for moves
+
+#  TODO: Colour code using ANSI Escape sequences
+
+#  TODO: Save game to a file, use .Dtn or something
+
+#  TODO: Load game from files
+
 import random
 
 import time
