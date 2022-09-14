@@ -450,6 +450,9 @@ class MoveOptionQueue:
     def __init__(self):
         self.__Queue = []
 
+    def Randomise(self):
+        random.shuffle(self.__Queue)
+
     def GetQueueAsString(self):
         QueueAsString = ""
         Count = 1
@@ -479,6 +482,9 @@ class Player:
         self.__Name = N
         self.__Direction = D
         self.__Queue = MoveOptionQueue()
+
+    def RandomiseQueue(self):
+        self.__Queue.Randomise()
 
     def SameAs(self, APlayer):
         if APlayer is None:
