@@ -3,9 +3,6 @@
 # written by the AQA Programmer Team
 # developed in the Python 3.9 programming environment
 
-# TODO: Allow user to retry when illegal move inputted
-
-
 import random
 
 import time
@@ -165,20 +162,18 @@ class Dastan:
             while not SquareIsValid:
                 StartSquareReference = self.__GetSquareReference("containing the piece to move")
                 SquareIsValid = self.__CheckSquareIsValid(StartSquareReference, True)
+            MoveLegal = False
             SquareIsValid = False
-            while not SquareIsValid:
+            while not SquareIsValid or not MoveLegal:
                 FinishSquareReference = self.__GetSquareReference("to move to")
                 SquareIsValid = self.__CheckSquareIsValid(FinishSquareReference, False)
-            MoveLegal = self._CurrentPlayer.CheckPlayerMove(Choice, StartSquareReference, FinishSquareReference)
-            if MoveLegal:
-                PointsForPieceCapture = self.__CalculatePieceCapturePoints(FinishSquareReference)
-                self._CurrentPlayer.ChangeScore(-(Choice + (2 * (Choice - 1))))
-                self._CurrentPlayer.UpdateQueueAfterMove(Choice)
-                self.__UpdateBoard(StartSquareReference, FinishSquareReference)
-                self.__UpdatePlayerScore(PointsForPieceCapture)
-                print("New score: " + str(self._CurrentPlayer.GetScore()) + "\n")
-            else:
-                input("Invalid move. Turn forfeit. Enter any input to continue: ")
+                MoveLegal = self._CurrentPlayer.CheckPlayerMove(Choice, StartSquareReference, FinishSquareReference)
+            PointsForPieceCapture = self.__CalculatePieceCapturePoints(FinishSquareReference)
+            self._CurrentPlayer.ChangeScore(-(Choice + (2 * (Choice - 1))))
+            self._CurrentPlayer.UpdateQueueAfterMove(Choice)
+            self.__UpdateBoard(StartSquareReference, FinishSquareReference)
+            self.__UpdatePlayerScore(PointsForPieceCapture)
+            print("New score: " + str(self._CurrentPlayer.GetScore()) + "\n")
             if self._CurrentPlayer.SameAs(self._Players[0]):
                 self._CurrentPlayer = self._Players[1]
             else:
