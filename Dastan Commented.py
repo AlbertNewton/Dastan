@@ -33,7 +33,7 @@ class Dastan:
         self.__CreateBoard()
         self.__CreatePieces(NoOfPieces)
         self._CurrentPlayer = self._Players[0]
-        self._Moves = ["jazair", "chowkidar", "cuirassier", "ryott", "faujdar"]
+        self._Moves = ["jazair", "chowkidar", "cuirassier", "ryott", "pawn", "faujdar"]
         self._Players[0].RandomiseQueue()
         self._Players[1].RandomiseQueue()
 
@@ -230,6 +230,7 @@ class Dastan:
         self._MoveOptionOffer.append("chowkidar")
         self._MoveOptionOffer.append("cuirassier")
         self._MoveOptionOffer.append("ryott")
+        self._MoveOptionOffer.append("pawn")
         self._MoveOptionOffer.append("faujdar")
         random.shuffle(self._MoveOptionOffer)
 
@@ -254,6 +255,18 @@ class Dastan:
         NewMove = Move(0, 2 * Direction)
         NewMoveOption.AddToPossibleMoves(NewMove)
         NewMove = Move(0, -2 * Direction)
+        NewMoveOption.AddToPossibleMoves(NewMove)
+        return NewMoveOption
+
+    def __CreatePawnMoveOption(self, Direction):
+        NewMoveOption = MoveOption("pawn")
+        NewMove = Move(1 * Direction, 0)
+        NewMoveOption.AddToPossibleMoves(NewMove)
+        NewMove = Move(2 * Direction, 0)
+        NewMoveOption.AddToPossibleMoves(NewMove)
+        NewMove = Move(1 * Direction, -1)
+        NewMoveOption.AddToPossibleMoves(NewMove)
+        NewMove = Move(1 * Direction, 1)
         NewMoveOption.AddToPossibleMoves(NewMove)
         return NewMoveOption
 
@@ -312,6 +325,8 @@ class Dastan:
             return self.__CreateFaujdarMoveOption(Direction)
         elif Name == "jazair":
             return self.__CreateJazairMoveOption(Direction)
+        elif Name == "pawn":
+            return self.__CreatePawnMoveOption(Direction)
         else:
             return self.__CreateCuirassierMoveOption(Direction)
 
@@ -320,11 +335,13 @@ class Dastan:
         self._Players[0].AddToMoveOptionQueue(self.__CreateMoveOption("chowkidar", 1))
         self._Players[0].AddToMoveOptionQueue(self.__CreateMoveOption("cuirassier", 1))
         self._Players[0].AddToMoveOptionQueue(self.__CreateMoveOption("faujdar", 1))
+        self._Players[0].AddToMoveOptionQueue(self.__CreateMoveOption("pawn", 1))
         self._Players[0].AddToMoveOptionQueue(self.__CreateMoveOption("jazair", 1))
         self._Players[1].AddToMoveOptionQueue(self.__CreateMoveOption("ryott", -1))
         self._Players[1].AddToMoveOptionQueue(self.__CreateMoveOption("chowkidar", -1))
         self._Players[1].AddToMoveOptionQueue(self.__CreateMoveOption("jazair", -1))
         self._Players[1].AddToMoveOptionQueue(self.__CreateMoveOption("faujdar", -1))
+        self._Players[1].AddToMoveOptionQueue(self.__CreateMoveOption("pawn", -1))
         self._Players[1].AddToMoveOptionQueue(self.__CreateMoveOption("cuirassier", -1))
 
 
