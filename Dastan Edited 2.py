@@ -148,6 +148,12 @@ class Dastan:
             MoveLegal = self._CurrentPlayer.CheckPlayerMove(Choice, StartSquareReference, FinishSquareReference)
             if MoveLegal:
                 PointsForPieceCapture = self.__CalculatePieceCapturePoints(FinishSquareReference)
+
+                # EDIT: DETECT CAPTURE
+                if PointsForPieceCapture != 0:
+                    print("Captured a piece!")
+                # END EDIT
+
                 self._CurrentPlayer.ChangeScore(-(Choice + (2 * (Choice - 1))))
                 self._CurrentPlayer.UpdateQueueAfterMove(Choice)
                 self.__UpdateBoard(StartSquareReference, FinishSquareReference)
